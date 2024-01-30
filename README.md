@@ -1,6 +1,5 @@
-# intensivo_js
-### Repositório criado para disponibilizar os projetos feitos durante a semana do
-curso Intensivão de JavaScript da Hashtag Treinamentos.
+# Intensivão de JavaScript da Hashtag Treinamentos.
+### Repositório criado para disponibilizar os projetos feitos durante a semana do curso de javascript da hashtag.
 ##### Novas versões podem ser submetidas, e todas ficarão disponíveis conforme lançamento.
 ##### Todos os arquivos aqui são de livre permissão de uso, à mercê do visitante.
 #####
