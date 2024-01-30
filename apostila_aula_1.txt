@@ -1,0 +1,125 @@
+A partir da página 22 do slide.
+
+
+Nome do arquivo é index.html, é um nome padrão, representa a página principal do projeto
+O arquivo style.css é o arquivo CSS, que resolve o estilo visual do projeto, pode ter qualquer nome
+
+"!" + ENTER = estrutura padrão do código html no visual studio
+
+
+
+<!DOCTYPE html>
+<html Lang="en">
+
+<head>
+    <meta charset="UTF-8"> #FORMATO DO TEXTO
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Document </title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+<div class="container-aplicativo">
+    #TAGS DE TEXTO
+    <h1> Texto em formatacao de titulo </h1>
+    <h2> Texto em formatacao de subtitulo </h2>
+    <p> Texto qualquer </p>
+    
+
+    <img src="./images/dom-casmurro.jpeg" alt="">
+    <div id="informacoes-faixa">
+        <p id="capitulo"> Capitulo 1 </p>
+        <p id="nome-autor"> Machado de Assis </p>
+    </div>
+    <audio id="audio-capitulo" src="./books/dom-casmurro/1.mp3"> </audio>
+    <div id="container-botoes">
+        <button id="anterior" class="bi bi-skip-backward-fill"></button>
+        <button id="play-pause" class="bi bi-play-circle-fill"></button>
+        <button id="proximo" class="bi bi-skip-forward-fill"></button>
+    </div> (faz que todas as tags se aglomerem, e define um id para esse conjunto)
+</div>
+<script src="./script.js"></script>
+</body>
+...
+
+</html>
+
+
+
+
+
+style.css
+
+#aqui muda o estilo da tag <p>
+p {
+    color: red; 
+}
+#subtitulo {
+    background-color: yellow;
+}
+.fundo-verde {
+    background-color: darkseagreen;
+}
+
+#container-botoes {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+script.js
+
+
+const botaoPlayPause = document.getElementById("play-pause");
+const botaoProxFaixa = document.getElementById("proximo");
+const botaoAntFaixa = document.getElementById("anterior");
+const audioCapitulo = document.getElementById("audio-capitulo");
+const nomeCapitulo = document.getElementById("capitulo");
+
+const numeroCapitulos = 10;
+let pp = 0;
+let capituloAtual = 1;
+
+function tocarFaixa(){
+    audioCapitulo.play();
+    pp = 1;
+    botaoPlayPause.classlist.remove("bi-play-circle-fill");
+    botaoPlayPause.classlist.add("bi-pause-circle-fill");
+} function pausarFaixa(){
+    audioCapitulo.pause();
+    pp = 0;
+    botaoPlayPause.classlist.remove("bi-pause-circle-fill");
+    botaoPlayPause.classlist.add("bi-play-circle-fill");
+} function tocarOuPausar(){
+    if (pp === 0) {
+        tocarFaixa();
+    } else if (pp === 1) {
+        pausarFaixa(); }
+}
+
+
+function proximaFaixa() {
+    if (capituloAtual === numeroCapitulos){
+        capituloAtual = 1;
+    }else if (capituloAtual <== numeroCapitulos) {
+        capituloAtual += 1; }
+    audioCapitulo.src = "./books/dom-casmurro/" + capituloAtual + ".mp3";
+}
+
+function antFaixa() {
+    if (capituloAtual === 1) {
+        capituloAtual = numeroCapitulos;
+    }else if (capituloAtual >== 1) {
+        capituloAtual -= 1; }
+    audioCapitulo.src = "./books/dom-casmurro/" + capituloAtual + ".mp3";
+}
+
+
+botaoAntFaixa.onclick(antFaixa);
+botaoProxFaixa.onclick(proximaFaixa);
+botaoPlayPause.addEventListener("click", tocarOuPausar);
+#ou botaoPlayPause.onclick(tocarFaixa);
+
+nomeCapitulo.innerText = "Capitulo " + capituloAtual;
